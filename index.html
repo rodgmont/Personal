@@ -8,49 +8,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style/style.css">
     <title>Fran Rodgmont</title>
+    <link rel="shortcut icon" type="image/ppg" href="/files/icon.png" />
 </head>
-
 <body>
-    <!--content-->
     <div class="container">
         <div class="header">
-            <div style="position: relative;" oncontextmenu="return false">
-                <img src="files/profile.png" alt="Fran Rodgmont" class="profile photo" draggable="false">
+            <div style="position: relative;" oncontextmenu="return false;">
+                <img src="/files/profile.png" alt="Fran Rodgmont" class="profile-photo" draggable="false">
                 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
             </div>
             <p class="header-text">Fran Rodgmont</p>
         </div>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book.</p>
-        <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
-            unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-            passages.</p>
-        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
-            literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
-            Hampden-Sydney College in Virginia.</p>
+        
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tincidunt enim purus, vel lobortis ipsum hendrerit ac. Mauris at erat et eros venenatis vulputate. Aliquam erat volutpat.</p>
+        
+        <p>Aliquam nec ex id nunc vehicula elementum. Integer bibendum, risus at blandit placerat, ligula lectus ultricies orci, sit amet dictum arcu justo nec mi. Sed sodales nibh quis lacus convallis sodales. Sed eget imperdiet libero. Fusce sit amet nisl eu odio efficitur convallis ut non dolor.</p>
+        
+        <p>Aliquam aliquam sed velit sit amet tincidunt. Nunc nibh dolor, molestie in mollis eget, viverra sit amet urna. Donec leo lorem, accumsan a sodales viverra, faucibus nec sem. Aenean a fermentum nibh. Nam fringilla felis id aliquet porta. Morbi hendrerit eleifend lorem, eu egestas est ornare ut.</p>
+        
+        <p>Nam vel cursus orci. In eros augue, tincidunt quis bibendum vel, egestas sed tortor. Mauris in lectus facilisis, interdum ante nec, suscipit erat. Maecenas pharetra urna eget est aliquam, sit amet viverra ex hendrerit.</p>
+        
         <p>Currently:</p>
-        <div class="dropdown open">
-            <div class="dropdown-header">Obelysk ::after</div>
+        
+        <div class="dropdown">
+            <div class="dropdown-header">Obelysk Technologies</div>
             <div class="dropdown-content">
-                <p>
-                    <a href="https://obelysk.tec">all you need to knownslookup franrodgmont.com
-</a>
-                </p>
+                <p><a href="https://www.obelysk.tech">all you need to know</a></p>
             </div>
         </div>
-        <p>
-            Contact:
-            <span class="email-trigger" onclick="showEmailPopup()">Email</span>
-            |
-            <a href="https://www.linkedin.com/in/rodgmont/">LinkedIn</a>
-            |
-            <a href="https://www.crunchbase.com/person/fran-rodgmont">Cruchbase</a>
-        </p>
-        <p class="footer">© 2020-2025 Fran Rodgmont. All rights reserved.</p>
+        
+        
+        <p>Contact: <span class="email-trigger" onclick="showEmailPopup()">Email</span> | <a href="www.linkedin.com/in/rodgmont">LinkedIn</a> 
+        
+        <p class="footer">© 2025 Fran Rodgmont. All rights reserved.</p>
     </div>
-</body>
 
+    <!-- Email Popup -->
+    <div class="email-popup-overlay" id="emailPopup" onclick="hideEmailPopup(event)">
+        <div class="email-popup" onclick="event.stopPropagation()">
+            <button class="email-popup-close" onclick="hideEmailPopup()">&times;</button>
+            <h3>Contact</h3>
+            <div class="email-item" onclick="copyEmail('rodgmont@obelysk.tech')">
+                <div class="email-label">W</div>
+                <div class="email-address" data-email="rodgmont@obelysk.tech"></div>
+            </div>
+            <div class="email-item" onclick="copyEmail('franrodgmont@gmail.com')">
+                <div class="email-label">P</div>
+                <div class="email-address" data-email="franrodgmont@gmail.com"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copy confirmation -->
+    <div class="email-copied" id="emailCopied">Email copied to clipboard</div>
+
+    <script>
+        // JavaScript to handle dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdowns = document.querySelectorAll('.dropdown');
+            
+            dropdowns.forEach(dropdown => {
+                const header = dropdown.querySelector('.dropdown-header');
+                
+                header.addEventListener('click', () => {
+                    dropdown.classList.toggle('open');
+                });
+            });
+
+            // Obfuscate email addresses on load
+            const emailElements = document.querySelectorAll('[data-email]');
+            emailElements.forEach(element => {
+                const email = element.getAttribute('data-email');
+                element.textContent = email;
+            });
+        });
+
+        // Email popup functions
+        function showEmailPopup() {
+            const popup = document.getElementById('emailPopup');
+            popup.classList.add('show');
+        }
+
+        function hideEmailPopup(event) {
+            if (event && event.target !== event.currentTarget) return;
+            const popup = document.getElementById('emailPopup');
+            popup.classList.remove('show');
+        }
+
+        function copyEmail(email) {
+            navigator.clipboard.writeText(email).then(() => {
+                const notification = document.getElementById('emailCopied');
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 2000);
+            });
+        }
+
+        // Close popup on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                hideEmailPopup();
+            }
+        });
+    </script>
+</body>
 </html>
